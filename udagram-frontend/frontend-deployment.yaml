@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-frontend
+spec:
+  selector:
+    matchLabels:
+      run: udagram-frontend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: udagram-frontend
+    spec:
+      containers:
+      - name: udagram-frontend
+        image: docker.io/joehacker/udacity_udagram_frontend:v2
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: udagram-frontend
+  name: udagram-frontend
+spec:
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  selector:
+    service: udagram-frontend
