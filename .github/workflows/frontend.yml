@@ -18,8 +18,8 @@ jobs:
         - name: Build and push
           uses: docker/build-push-action@v2
           with:
-            context: ./udagram_frontend
-            file: ./udagram_frontend/Dockerfile
+            context: ./udagram-frontend
+            file: ./udagram-frontend/Dockerfile
             push: true
             tags: ${{ secrets.DOCKER_HUB_USERNAME }}/udacity_udagram_frontend:v1.0.1
             cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/udacity_udagram_frontend:buildcache
