@@ -1,4 +1,4 @@
-name: Docker feed Image CI
+name: Docker frontend Image CI
 on:
     push:
         branches: [ "main" ]
@@ -18,9 +18,9 @@ jobs:
         - name: Build and push
           uses: docker/build-push-action@v2
           with:
-            context: ./udagram_api_feed
-            file: ./udagram_api_feed/Dockerfile
+            context: ./udagram_frontend
+            file: ./udagram_frontend/Dockerfile
             push: true
-            tags: ${{ secrets.DOCKER_HUB_USERNAME }}/udacity_udagram_api_feed:v1.0.1
-            cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/udacity_udagram_api_feed:buildcache
-            cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/udacity_udagram_api_feed:buildcache,mode=max
+            tags: ${{ secrets.DOCKER_HUB_USERNAME }}/udacity_udagram_frontend:v1.0.1
+            cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/udacity_udagram_frontend:buildcache
+            cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/udacity_udagram_frontend:buildcache,mode=max
